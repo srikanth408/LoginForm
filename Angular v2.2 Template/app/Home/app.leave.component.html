@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Welcome to Leave Tracking Application of Copart</div>
+            <div class="panel-body table-responsive mytable">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Resource Manager</th>
+                            <th>Onsite Manager</th>
+                            <th>No of Leaves</th>
+                            <th>Director</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees">
+                            <td *ngIf="employee.username==='this.currentUser'">{{employee.Lead}}</td>
+                            <td *ngIf="employee.username==='admin@copart.com'">{{employee.Manager}}</td>
+                            <td *ngIf="employee.username==='admin@copart.com'">{{employee.Leaves}}</td>
+                            <td *ngIf="employee.username==='admin@copart.com'">{{employee.Director}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Leave history</div>
+            <div class="panel-body table-responsive mytable">
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th>Leave Type</th>
+                            <th>Fromdate</th>
+                            <th>Todate</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of leaveHistory">
+                            <td>{{item.Select}}</td>
+                            <td>{{item.Fromdate}}</td>
+                            <td>{{item.Todate}}</td>
+                            <td>{{item.Reason}}</td>
+                        </tr>
+                       </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Leave application form </div>
+    <div class="panel-body">
+        <form #leaveform="ngForm" (ngSubmit)="OnSubmit(leaveform.value)">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>
+                        <label>Leave type: </label>
+                        <select ngModel name="Select">
+                        <option valu="Select" disabled>Select Leave type</option>
+                        <option value="CL">Casual leave</option>
+                        <option value="SL">Sick Leave</option>
+                        <option value="PL">Paid Leave</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label>From Date: </label>
+                        <input type="date" ngModel name="Fromdate">
+                    </div>
+                    <div>
+                        <label>To Date: </label>
+                        <input type="date" ngModel name="Todate">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label>Reason for Leave</label>
+                    <textarea rows="4" cols="10" style="width:100%;" ngModel name="Reason"></textarea>
+                </div>
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </form>
+    </div>
+    
+
+
+
+<div>
+    <button type="button" class="btn btn-primary pull-right" (click)="logout()">Logout</button>
+</div>
